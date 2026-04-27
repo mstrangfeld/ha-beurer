@@ -98,7 +98,7 @@ class BeurerFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
 
     async def toggle_light(self):
         if not self.beurer_instance:
-            self.beurer_instance = BeurerInstance(await get_device(self.mac))
+            self.beurer_instance = BeurerInstance(self.hass, self.mac)
         try:
             LOGGER.debug("Going to update from config flow")
             await self.beurer_instance.update()
