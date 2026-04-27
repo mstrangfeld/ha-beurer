@@ -71,7 +71,7 @@ class BeurerInstance:
             track = traceback.format_exc()
             LOGGER.debug(track)
             LOGGER.warn(f"Error while trying to write to device: {error}")
-            self.disconnect()
+            await self.disconnect()
 
     @property
     def mac(self):
@@ -291,7 +291,7 @@ class BeurerInstance:
             track = traceback.format_exc()
             LOGGER.debug(track)
             LOGGER.error(f"Error connecting: {error}")
-            self.disconnect()
+            await self.disconnect()
             return False
         await asyncio.sleep(0.1)
         return True
@@ -314,7 +314,7 @@ class BeurerInstance:
             track = traceback.format_exc()
             LOGGER.debug(track)
             LOGGER.error(f"Error getting status: {error}")
-            self.disconnect()
+            await self.disconnect()
 
     async def disconnect(self):
         LOGGER.debug("Disconnecting")
